@@ -3,13 +3,20 @@ import React, { createContext, useReducer } from 'react'
 
 
 const initialState = {
-  popular:[]
+  popular:[],
+  related:[],
+  selected: {}
+  
 }
 
 const reducer = (state, action) => {
   switch(action.type) {
     case 'SET_POPULAR':
       return { popular: action.payload.popular }
+    case 'SET_RELATED':
+      return {...state,selected:action.payload.related}
+    case 'SET_SELECTED':
+      return {...state,selected:action.payload.selected }
     default:
       return state
   }
@@ -17,14 +24,14 @@ const reducer = (state, action) => {
 
 export const Store = createContext({
   globalState: initialState,
-  setGlobalstate: () => null
+  setGlobalState: () => null
 })
 
 
 export function StoreProvider({children}) {
-  const [ globalState, setGlobalstate] = useReducer(reducer, initialState)
+  const [ globalState, setGlobalState] = useReducer(reducer, initialState)
   return (
-    <Store.Provider value={{ globalState, setGlobalstate }}>{children}</Store.Provider>
+    <Store.Provider value={{ globalState, setGlobalState }}>{children}</Store.Provider>
   )
 }
 
