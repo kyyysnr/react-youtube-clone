@@ -21,7 +21,7 @@ function SideList() {
     <div>
       {
         globalState.related ? globalState.related.map((video) => {
-          return(
+          return (
             <SideListItem
               id={video.id.videoId}
               key={video.id.videoId}
@@ -29,9 +29,8 @@ function SideList() {
               title={video.snippet.title}
             />
           ) 
-        }) : (
-          <span>no data</span>
-        )
+        }) : <span>no data</span>
+        
       }
     </div>
   )
